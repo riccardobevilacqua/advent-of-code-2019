@@ -7,8 +7,9 @@ export const calculateRocketEquation = (): number => {
 
     return file
         .split('\n')
-        .reduce((acc, cur) => {
-            if (cur) {
+        .reduce((acc, cur, index) => {
+            console.log(`${index + 1}: ${parseInt(cur)}`);
+            if (cur && parseInt(cur) > 0) {
                 acc += calculateFuel(parseInt(cur));
 
                 return acc;
