@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node ./dist/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
     "watch": "webpack --watch --progress"
   },
   "keywords": [
@@ -15,9 +15,12 @@
   "author": "Riccardo Bevilacqua <bevilacqua.riccardo@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.14",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
+    "chai": "^4.2.0",
     "copy-webpack-plugin": "^5.0.5",
     "eslint": "^6.7.2",
     "eslint-config-standard": "^14.1.0",
@@ -25,7 +28,9 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^6.2.2",
     "ts-loader": "^6.2.1",
+    "ts-node": "^8.5.4",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
