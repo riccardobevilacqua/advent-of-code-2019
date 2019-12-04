@@ -1,13 +1,31 @@
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
 
-const calculateFuel = (input: number): number => Math.floor(input / 3) - 2;
+export const getMasses = (): number[] =>
+  readFileSync('./dist/inputs/input-01.txt', 'utf-8')
+    .split('\n')
+    .map(item => parseInt(item));
 
-export const calculateRocketEquation = (): number => {
-  const file: string = readFileSync("./dist/inputs/input-01.txt", "utf-8");
+export const calculateFuel = (input: number): number =>
+  Math.floor(input / 3) - 2;
 
-  return file.split("\n").reduce((acc: number, cur: string) => {
-    if (cur && parseInt(cur) > 0) {
-      acc += calculateFuel(parseInt(cur));
+export const calculatePreciseFuel = (
+  input: number,
+  mem: number = 0
+): number => {
+  const fuel: number = calculateFuel(input);
+
+  if (fuel >= 0) {
+    mem += fuel;
+    calculatePreciseFuel(fuel, mem);
+  }
+
+  return mem;
+};
+
+export const calculateEquation = (isHighPrecision: boolean = false): number => {
+  return getMasses().reduce((acc: number, cur: number) => {
+    if (cur && cur > 0) {
+      acc += isHighPrecision ? calculatePreciseFuel(cur) : calculateFuel(cur);
 
       return acc;
     }
