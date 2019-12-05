@@ -16,6 +16,7 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     quotes: ["error", "single", { allowTemplateLiterals: true }],
-    semi: ["error", "always"]
+    semi: ["error", "always"],
+    indent: ["error", 2]
   }
 };
