@@ -14,12 +14,7 @@ export const calculatePreciseFuel = (
 ): number => {
   const fuel: number = calculateFuel(input);
 
-  if (fuel >= 0) {
-    mem += fuel;
-    calculatePreciseFuel(fuel, mem);
-  }
-
-  return mem;
+  return fuel >= 0 ? calculatePreciseFuel(fuel, mem + fuel) : mem;
 };
 
 export const calculateEquation = (isHighPrecision: boolean = false): number => {
