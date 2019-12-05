@@ -10,7 +10,8 @@
     "watch": "webpack --watch --progress"
   },
   "keywords": [
-    "aoc"
+    "advent-of-code",
+    "advent-of-code-2019"
   ],
   "author": "Riccardo Bevilacqua <bevilacqua.riccardo@gmail.com>",
   "license": "MIT",
