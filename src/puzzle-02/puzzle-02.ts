@@ -6,10 +6,12 @@ export interface IntCodeConfig {
   verb?: number;
 }
 
-export const setupIntCode = (
-  { input, noun, verb }: IntCodeConfig = { input: [] }
-): number[] => {
-  if (input.length === 0) {
+export const setupIntCode = ({
+  input,
+  noun,
+  verb
+}: IntCodeConfig = {}): number[] => {
+  if (!input) {
     input = readInput("./dist/inputs/input-02.txt", ",");
   }
 
@@ -42,11 +44,25 @@ export const runIntCode = (
   return runIntCode(intCode, index + 4);
 };
 
-export const getProcessedValue = (): number => {
-  const input: number[] = setupIntCode();
+export const getProcessedValue = ({ noun, verb }: IntCodeConfig): number => {
+  const input: number[] = setupIntCode({ noun, verb });
   const output: number[] = runIntCode(input);
 
   return output[0];
 };
 
-export const getGravityAssist = () => {};
+export const getGravityAssist = (reference: number): IntCodeConfig => {
+  for (var i = 0; i < 100; i++) {
+    for (var j = 0; j < 100; j++) {
+      if (getProcessedValue({ noun: i, verb: j }) === reference) {
+        return { noun: i, verb: j };
+      }
+    }
+  }
+};
+
+export const getProgramAlarm = (reference: number): number => {
+  const { noun, verb } = getGravityAssist(reference);
+
+  return 100 * noun + verb;
+};
