@@ -3,20 +3,20 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: ["eslint:recommended"],
+  extends: ['eslint:recommended'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint'],
   rules: {
-    quotes: ["error", "single", { allowTemplateLiterals: true }],
-    semi: ["error", "always"],
-    indent: ["error", 2]
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    semi: ['error', 'always'],
+    indent: ['error', 2]
   }
 };
