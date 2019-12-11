@@ -46,12 +46,21 @@ export const isHorizontalSegment = (segment: Segment): boolean => segment.point1
 
 export const isPerpendicularSegment = (segment1: Segment, segment2: Segment): boolean => {
   if (
-    isVerticalSegment(segment1) && isHorizontalSegment(segment2)
+    isVerticalSegment(segment1)
+    && isHorizontalSegment(segment2)
     && (
       segment1.point1.x < segment2.point2.x
       && segment1.point1.x > segment2.point1.x
       && segment2.point1.y < segment1.point1.y
       && segment2.point1.y > segment1.point2.y
+    )
+    || isVerticalSegment(segment2)
+    && isHorizontalSegment(segment1)
+    && (
+      segment2.point1.x < segment1.point2.x
+      && segment2.point1.x > segment1.point1.x
+      && segment1.point1.y < segment2.point1.y
+      && segment1.point1.y > segment2.point2.y
     )
   ) {
     return true;
@@ -60,6 +69,21 @@ export const isPerpendicularSegment = (segment1: Segment, segment2: Segment): bo
   return false;
 };
 
-export const getIntersection = (segment1: Segment, segment2: Segment) => {
+export const getSegmentsIntersection = (segment1: Segment, segment2: Segment): Point | null => {
+  if (isPerpendicularSegment(segment1, segment2)) {
+    let x: number;
+    let y: number;
 
+    if (isVerticalSegment(segment1)) {
+      x = segment1.point1.x;
+      y = segment2.point1.y;
+    } else if (isVerticalSegment(segment2)) {
+      x = segment2.point1.x;
+      y = segment1.point1.y;
+    }
+
+    return <Point>{ x, y };
+  }
+
+  return null;
 };

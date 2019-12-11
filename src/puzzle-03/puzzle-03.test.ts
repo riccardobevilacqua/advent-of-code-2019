@@ -5,7 +5,8 @@ import {
   getSegments,
   isVerticalSegment,
   isHorizontalSegment,
-  getIntersection
+  isPerpendicularSegment,
+  getSegmentsIntersection
 } from './puzzle-03';
 
 const wire1: string[] = ['R8', 'U5', 'L5', 'D3'];
@@ -80,6 +81,18 @@ it('should detect horizontal segment', () => {
   expect(isHorizontalSegment(segment)).toBeTruthy();
 });
 
+it('should detect perpendicular segments', () => {
+  const segment1: Segment = {
+    point1: { x: 2, y: 3 },
+    point2: { x: 6, y: 3 }
+  };
+  const segment2: Segment = {
+    point1: { x: 3, y: 5 },
+    point2: { x: 3, y: 2 }
+  };
+
+  expect(isPerpendicularSegment(segment1, segment2)).toBeTruthy();
+});
 
 it('should get intersection of two segments', () => {
   const segment1: Segment = {
@@ -91,5 +104,5 @@ it('should get intersection of two segments', () => {
     point2: { x: 3, y: 2 }
   };
 
-  expect(getIntersection(segment1, segment2)).toStrictEqual({ x: 3, y: 3 });
+  expect(getSegmentsIntersection(segment1, segment2)).toStrictEqual({ x: 3, y: 3 });
 });
