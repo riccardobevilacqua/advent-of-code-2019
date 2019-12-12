@@ -49,18 +49,18 @@ export const isPerpendicularSegment = (segment1: Segment, segment2: Segment): bo
     isVerticalSegment(segment1)
     && isHorizontalSegment(segment2)
     && (
-      segment1.point1.x < segment2.point2.x
-      && segment1.point1.x > segment2.point1.x
-      && segment2.point1.y < segment1.point1.y
-      && segment2.point1.y > segment1.point2.y
+      segment1.point1.x < Math.max(segment2.point1.x, segment2.point2.x)
+      && segment1.point1.x > Math.min(segment2.point1.x, segment2.point2.x)
+      && segment2.point1.y < Math.max(segment1.point1.y, segment1.point2.y)
+      && segment2.point1.y > Math.min(segment1.point1.y, segment1.point2.y)
     )
     || isVerticalSegment(segment2)
     && isHorizontalSegment(segment1)
     && (
-      segment2.point1.x < segment1.point2.x
-      && segment2.point1.x > segment1.point1.x
-      && segment1.point1.y < segment2.point1.y
-      && segment1.point1.y > segment2.point2.y
+      segment2.point1.x < Math.max(segment1.point1.x, segment1.point2.x)
+      && segment2.point1.x > Math.min(segment1.point1.x, segment1.point2.x)
+      && segment1.point1.y < Math.max(segment2.point1.y, segment2.point2.y)
+      && segment1.point1.y > Math.min(segment2.point1.y, segment2.point2.y)
     )
   ) {
     return true;

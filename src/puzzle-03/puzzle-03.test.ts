@@ -103,6 +103,15 @@ it('should get intersection of two segments', () => {
     point1: { x: 3, y: 5 },
     point2: { x: 3, y: 2 }
   };
+  const segment3: Segment = {
+    point1: { x: 6, y: 3 },
+    point2: { x: 2, y: 3 }
+  };
+  const segment4: Segment = {
+    point1: { x: 3, y: 2 },
+    point2: { x: 3, y: 5 }
+  };
 
   expect(getSegmentsIntersection(segment1, segment2)).toStrictEqual({ x: 3, y: 3 });
+  expect(getSegmentsIntersection(segment3, segment4)).toStrictEqual({ x: 3, y: 3 });
 });
