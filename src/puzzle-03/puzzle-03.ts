@@ -87,3 +87,15 @@ export const getSegmentsIntersection = (segment1: Segment, segment2: Segment): P
 
   return null;
 };
+
+export const getWiresIntersections = (wire1: Segment[], wire2: Segment[]): Point[] => {
+  return wire1.reduce((acc1: Point[], cur1: Segment) => {
+    const wireIntersections: Point[] = wire2.reduce((acc2: Point[], cur2: Segment) => {
+      const segmentsIntersection: Point = getSegmentsIntersection(cur1, cur2);
+
+      return segmentsIntersection ? [...acc2, segmentsIntersection] : acc2;
+    }, []);
+
+    return wireIntersections ? [...acc1, wireIntersections] : acc1;
+  }, []);
+};
