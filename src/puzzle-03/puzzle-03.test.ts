@@ -7,7 +7,8 @@ import {
   isHorizontalSegment,
   isPerpendicularSegment,
   getSegmentsIntersection,
-  getWiresIntersections
+  getWiresIntersections,
+  getManhattanIntersection
 } from './puzzle-03';
 
 const wire1: string[] = ['R8', 'U5', 'L5', 'D3'];
@@ -126,4 +127,8 @@ it('should calculate intersections of two wires', () => {
 
   expect(intersections.length).toBe(2);
   expect(intersections).toEqual(expect.arrayContaining(expectedIntersections));
+});
+
+it('should calculate minimum Manhattan distance of two wires intersections', () => {
+  expect(getManhattanIntersection(wire1, wire2)).toBe(6);
 });

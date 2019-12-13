@@ -102,3 +102,17 @@ export const getWiresIntersections = (wire1: string[], wire2: string[]): Point[]
     return wireIntersections ? [...acc1, ...wireIntersections] : acc1;
   }, []);
 };
+
+export const getManhattanIntersection = (wire1: string[], wire2: string[]): number => {
+  const origin: Point = { x: 0, y: 0 };
+  const intersections: Point[] = getWiresIntersections(wire1, wire2);
+
+  return intersections.reduce((acc: number, cur: Point) => {
+    const manhattanDistance: number = getManhattanDistance(origin, cur);
+    if (acc === 0) {
+      return manhattanDistance;
+    }
+
+    return acc > manhattanDistance ? manhattanDistance : acc;
+  }, 0);
+};
