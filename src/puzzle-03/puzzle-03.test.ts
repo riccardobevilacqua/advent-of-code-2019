@@ -6,7 +6,8 @@ import {
   isVerticalSegment,
   isHorizontalSegment,
   isPerpendicularSegment,
-  getSegmentsIntersection
+  getSegmentsIntersection,
+  getWiresIntersections
 } from './puzzle-03';
 
 const wire1: string[] = ['R8', 'U5', 'L5', 'D3'];
@@ -114,4 +115,15 @@ it('should get intersection of two segments', () => {
 
   expect(getSegmentsIntersection(segment1, segment2)).toStrictEqual({ x: 3, y: 3 });
   expect(getSegmentsIntersection(segment3, segment4)).toStrictEqual({ x: 3, y: 3 });
+});
+
+it('should calculate intersections of two wires', () => {
+  const expectedIntersections: Point[] = [
+    { x: 3, y: 3 },
+    { x: 6, y: 5 }
+  ];
+  const intersections: Point[] = getWiresIntersections(wire1, wire2);
+
+  expect(intersections.length).toBe(2);
+  expect(intersections).toEqual(expect.arrayContaining(expectedIntersections));
 });
