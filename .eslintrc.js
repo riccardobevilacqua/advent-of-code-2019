@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     es6: true,
-    node: true
+    node: true,
+    'jest/globals': true
   },
   extends: ['eslint:recommended'],
   globals: {
@@ -13,10 +14,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'jest'],
+  files: ['*.ts'],
   rules: {
-    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    quotes: ['warning', 'single', { allowTemplateLiterals: true }],
     semi: ['error', 'always'],
-    indent: ['error', 2]
+    indent: ['warning', 2],
+    '@typescript-eslint/no-unused-vars': [2, { args: 'none' }]
   }
 };
